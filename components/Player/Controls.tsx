@@ -61,6 +61,7 @@ export const Controls = () => {
             }
         }
     });
+    
 
     const togglePlay = () => {
         if(isPlaying) {

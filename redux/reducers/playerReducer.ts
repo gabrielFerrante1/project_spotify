@@ -5,7 +5,7 @@ import type { Playlist } from '../../types/Playlist';
 
 
 const playlist: Playlist[] = [
-    {id:1, name: '', path: '', avatar: '', author: ''},
+    {id:1, name: '', path: '', avatar: '', author: '', tipo: 'Música', privacy: 1},
 ];
 
 const dataPlaying: InfoTrack= {

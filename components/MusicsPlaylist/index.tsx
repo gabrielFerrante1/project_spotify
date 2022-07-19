@@ -22,8 +22,7 @@ export default function MusicsPlaylist( ) {
 
     dispatch(setIsPlayingData({
         id: player.isPlayingData.id,
-        tipo: 'Playlist',
-        idMusic: list[index].id
+        tipo: 'Playlist' 
     }));  
   }
 

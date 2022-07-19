@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { setIsPlayingTrack, setPlayList, setResetAudioOnAlterationPlaylist } from '../../redux/reducers/playerReducer'; 
 import { DeleteOutlined } from '@ant-design/icons';
-import { useApi } from '../../../../../react/online/spotify/src/utils/api';
+import { useApi } from '../../utils/api';
 import { MyPlaylist } from '../../types/MyPlaylist';
 
 type Props = {

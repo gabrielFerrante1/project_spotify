@@ -2,7 +2,7 @@ import styles from '../styles/playlists.module.css';
 import { Avatar, Typography } from 'antd'; 
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { useApi } from '../../../../react/online/spotify/src/utils/api'; 
+import { useApi } from '../utils/api'; 
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Backdrop from '@mui/material/Backdrop';
 import { CircularProgress } from '@mui/material'; 

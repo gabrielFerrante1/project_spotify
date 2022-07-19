@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Table from '../components/Table';
 import { Row } from 'react-bootstrap'; 
 import { SearchInput } from '../components/SearchInput/SearchInput';
-import { useApi } from '../../../../react/online/spotify/src/utils/api';
+import { useApi } from '../utils/api';
 import { Playlist } from '../types/Playlist'; 
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store'; 

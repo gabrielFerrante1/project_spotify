@@ -4,7 +4,7 @@ import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MyPlaylist } from "../../types/MyPlaylist";
-import { useApi } from '../../../../../react/online/spotify/src/utils/api';
+import { useApi } from '../../utils/api';
 import styles from '../../styles/PlaylistID.module.css';
 import { EditPlaylist } from '../../components/EditPlaylist';
 import TablePlaylist from '../../components/TablePlaylist';

@@ -5,7 +5,7 @@ import { MyPlaylist } from "../../types/MyPlaylist"
 import { PopoverGrf } from "../PopoverGrf";
 import styles from './EditPlaylist.module.css';  
 import { ChangeEvent, useEffect, useState } from "react";
-import { useApi } from "../../../../../react/online/spotify/src/utils/api";
+import { useApi } from '../../utils/api';
 import Backdrop from '@mui/material/Backdrop';
 
 type Props = {

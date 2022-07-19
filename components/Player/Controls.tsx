@@ -41,23 +41,26 @@ export const Controls = () => {
     const [nextAudioAutomatic, setNextAudioAutomatic] = useState<number>(0);
 
     //Event listeners 
-    audio?.addEventListener('timeupdate', (ev:  SyntheticEvent<HTMLAudioElement>) => {
-        const result = ev.currentTarget.duration - ev.currentTarget.currentTime;
-        setValueTime(ev.currentTarget.currentTime);
+    audio?.addEventListener('timeupdate', () => {
+        let result = 0
+        if (audio != undefined) {
+            result = audio.duration - audio.currentTime;
+            setValueTime(audio.currentTime);
+        }
 
-        if(player.playlist.length < 1) {
-            if(result == 0) {
+        if (player.playlist.length < 1) {
+            if (result == 0) {
                 setIsPlaying(false);
                 setValueTime(0);
             }
         } else {
-            if(!isLoop) {
-                if(result <= 1.5 && nextAudioAutomatic == 0) {
+            if (!isLoop) {
+                if (result <= 1.5 && nextAudioAutomatic == 0) {
                     setNextAudioAutomatic(1);
                 }
-            } 
+            }
         }
-    });  
+    });
 
     const togglePlay = () => {
         if(isPlaying) {

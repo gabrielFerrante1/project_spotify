@@ -1,0 +1,111 @@
+.app { 
+    height:100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.appLeftBar {
+    background-color: black;
+    min-width: 200px;
+    width: 250px;
+}
+
+.appLeftBarDivUl > ul { 
+    list-style: none;
+    padding: 0;
+}
+
+.appLeftBarDivUl > ul > li { 
+    list-style: none;
+    margin: 30px 7px;
+    transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.appLeftBarDivLiDiv  {
+   display: flex;
+   color: rgb(207, 207, 207);
+   cursor: pointer;
+}
+
+.appLeftBarDivLiDiv:hover  {
+    color: rgb(255, 255, 255);
+}
+
+.appLeftBarIcons {
+    font-size: 25px;
+}
+
+.appLeftBarTexts {
+    font-size: 15.5px;
+    margin-left: 15px;
+}
+
+.appPages { 
+    background-color: #181818;
+    height: 90vh;
+    overflow-y: auto;
+    min-width: 700px;
+    width: 100%;
+}
+
+.activeRoute {
+    color: white;
+}
+
+.appPlayer {
+    border-top: 1px solid rgb(77, 77, 77);
+    position:fixed;
+    width:100%;
+    bottom: 0;
+    height: 95px;
+    background:#181818;
+    min-width: 500px;
+}
+
+.appViewPlaylist {
+    background-color: #323030;
+    height: 90vh;
+    overflow-y: hidden;
+    width: 0;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -o-transition: all 1s;
+    -moz-transition: all 1s;
+}
+
+.appViewPlaylist:hover {
+    overflow-y: auto;
+}
+ 
+.appViewPlaylist::-webkit-scrollbar,
+.appPages::-webkit-scrollbar {
+    width: 10px;
+}
+
+.appViewPlaylist::-webkit-scrollbar-track,
+.appPages::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+.appViewPlaylist::-webkit-scrollbar-thumb,
+.appPages::-webkit-scrollbar-thumb {
+    background-color: #575757; 
+}
+
+.appViewPlaylist::-webkit-scrollbar-thumb:hover,
+.appPages::-webkit-scrollbar-thumb:hover{
+    background-color: #6a6969;
+}
+
+@media (max-width: 770px) {
+    .appPlayer {
+        display: none;
+    }
+}

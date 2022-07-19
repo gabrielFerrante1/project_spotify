@@ -1,0 +1,156 @@
+.infoPlayer {
+    display: flex;
+    align-items: center; 
+    height: 95px;
+    padding: 0 5px;
+}
+
+.infoPlayerAvatar {
+    min-width: 63px;
+    height: 58px;
+}
+
+.infoPlayerNameAndAuthor{
+    font-size: 14px; 
+    margin-left: 13px; 
+}
+
+.infoPlayerNameAndAuthor > h4 {
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 210px;
+}
+
+
+.infoPlayerNameAndAuthor > small {
+    display: block;
+    margin-top: -3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 110px;
+    color: rgb(191, 191, 191);
+}
+
+.audioControls {
+    display: flex;
+    align-items: center; 
+    height: 100px;  
+    justify-content: center;
+    flex-direction: column;
+}
+
+.controlPlay {
+    outline: none;
+    border: none;
+    background-color: white;
+    border-radius: 50%; 
+    width: 35px;
+    height: 35px;
+}
+
+.controlSlider {
+    display: flex;
+    width: 65%;  
+}
+
+.controlSliderTime {
+    font-size: 13px;
+    color: rgb(226, 226, 226);
+    margin-right: 10px;
+    align-self: center;
+    margin-bottom: 3px;
+}
+
+.controlAudioLoop {  
+    font-size: 23px;
+    color: gray;
+    margin-top: 2px;
+}
+
+
+.audioControls {
+    display: flex;
+    align-items: center; 
+    height: 95px;  
+    justify-content: center;
+    flex-direction: column;
+}
+
+.controlMoreOptions {
+    display: flex;
+    align-items: center; 
+    height: 95px;  
+    justify-content: center; 
+}
+
+.controlAudioVolume { 
+    font-size: 24px;
+    color: gray;
+    margin-left: 20px;
+}
+
+.controlAudioReplay10 {
+    font-size: 22px;
+    color: gray;
+    margin-right: 27px; 
+}
+
+.controlAudioForward10 {
+    font-size: 22px;
+    color: gray;
+    margin-left: 27px;
+}
+
+.controlAudioBackwardPlaylist {
+    font-size: 25px;
+    color: gray;
+    margin-right: 20px;
+}
+
+.controlAudioForwardPlaylist {
+    font-size: 25px;
+    color: gray;
+    margin-left: 20px;
+}
+
+.controlAudioQueuePlaylist {
+    font-size: 24px;
+    color: gray;
+    margin-left: 20px;
+}
+
+.controlAudioLyrics {
+    font-size: 24px;
+    color: gray;
+    margin-top: 2px;
+    margin-left: 15px;
+}
+
+.controlActive {
+    color: rgb(10, 212, 61)
+}
+
+.controlAudioReplay10,
+.controlAudioForward10,
+.controlAudioVolume,
+.controlAudioLoop,
+.controlAudioBackwardPlaylist,
+.controlAudioForwardPlaylist,
+.controlAudioQueuePlaylist,
+.controlAudioLyrics {
+    cursor:pointer;
+}
+
+.controlAudioReplay10:hover,
+.controlAudioForward10:hover,
+.controlAudioVolume:hover,
+.controlAudioLoop:hover,
+.controlAudioBackwardPlaylist:hover,
+.controlAudioForwardPlaylist:hover,
+.controlAudioQueuePlaylist:hover,
+.controlAudioLyrics:hover {
+    color: rgb(255, 255, 255)
+} 

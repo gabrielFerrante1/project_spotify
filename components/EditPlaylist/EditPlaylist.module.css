@@ -1,0 +1,56 @@
+.content {
+    display: flex;
+    align-items: center;
+    height: 100%; width: 100%;
+}
+
+.uploadAvatar {
+    display: none;
+    width: 140px;
+    height: 140px; 
+    margin-left: 25px;
+    margin-top: 50%;
+}
+
+
+.contentAvatar:hover .avatar {
+    display: none;
+}
+
+.contentAvatar:hover .uploadAvatar {
+    display: block;
+}
+
+
+.avatar { 
+    margin-left: 25px;
+    min-width: 50px;
+}
+
+.contentInfoPlaylist {
+    margin-left: 18px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.contentInfoPlaylistName {
+    display: flex;
+    width: 900px; 
+}
+
+.contentInfoPlaylistName  > h4{
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 730px; 
+} 
+
+.contentInfoPlaylistName > div {
+    margin-left: 10%;
+    align-self: center;
+    margin-bottom: 13px;
+    color: rgb(224, 224, 224);
+    cursor: pointer;
+}

@@ -1,0 +1,75 @@
+.tableTracks {
+    background-color: transparent;
+    width: 100%;
+}
+
+.tableTracks > thead > tr > th{  
+    border-bottom: 1px solid rgb(116, 116, 116);
+    color: rgb(215, 215, 215);
+}
+
+.tableTracks > tbody > tr > td{ 
+    padding: 10px; 
+}
+
+.titleTH {
+    display: flex; 
+}
+
+.titleNames { 
+    align-self: center;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.titleNames > span {
+    color: rgb(215, 215, 215);
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 490px;
+}
+
+.titleNames > small { 
+    font-size: 11px;
+    font-weight: 400; 
+    margin-top: -3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 190px;
+    color: rgb(191, 191, 191);
+}
+
+.titleActionMusic  { 
+   display: none; 
+   color: rgb(228, 227, 227);
+   background-color: rgb(25, 215, 4);
+   width: 28px;
+   height: 28px;
+   border-radius: 50%;
+   margin-left: -6px;
+}
+
+.titleId {
+    font-size: 16px;
+    font-weight: 400;   
+    color: rgb(191, 191, 191);
+}
+
+.contentTR:hover
+.titleActionMusic {
+   display: block;
+}
+
+.contentTR:hover
+.titleId {
+   display: none;
+} 
+
+.activeMusic {
+    color: rgb(10, 212, 61) !important;
+}
+ 

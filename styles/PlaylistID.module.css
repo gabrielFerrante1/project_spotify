@@ -1,0 +1,9 @@
+#header {
+    background: linear-gradient(to right, #6a6a6a, #bdbebe);
+    height: 197px; 
+}
+
+#body {
+    border-top: 1px solid rgb(157, 157, 157);
+    padding-top: 10px;
+}

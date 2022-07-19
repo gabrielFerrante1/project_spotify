@@ -2,7 +2,7 @@ import axios from "axios";
 
 const base_url = process.env.NEXT_PUBLIC_BASE_URL_API;
 
-export const useApi = async ( 
+export const api = async ( 
         route: string,
         method: 'get' | 'post' | 'put' | 'delete' = 'get',
         data?: object | string,

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Table from '../components/Table';
 import { Row } from 'react-bootstrap'; 
 import { SearchInput } from '../components/SearchInput/SearchInput';
-import { useApi } from '../utils/api';
+import { api } from '../utils/api';
 import { Playlist } from '../types/Playlist'; 
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store'; 
@@ -29,7 +29,7 @@ const Search = () => {
   
     if(pagination.page == 1) offset = 0; 
   
-    let json: PropsJson = await useApi('search', 'get', `limit=${limit}&offset=${offset}`);
+    let json: PropsJson = await api('search', 'get', `limit=${limit}&offset=${offset}`);
     setList(json.data);
     setCountList(json.count);
 

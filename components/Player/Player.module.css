@@ -1,6 +1,6 @@
 .infoPlayer {
     display: flex;
-    align-items: center; 
+    align-items: center;
     height: 95px;
     padding: 0 5px;
 }
@@ -10,12 +10,12 @@
     height: 58px;
 }
 
-.infoPlayerNameAndAuthor{
-    font-size: 14px; 
-    margin-left: 13px; 
+.infoPlayerNameAndAuthor {
+    font-size: 14px;
+    margin-left: 13px;
 }
 
-.infoPlayerNameAndAuthor > h4 {
+.infoPlayerNameAndAuthor>h4 {
     color: white;
     white-space: nowrap;
     overflow: hidden;
@@ -24,7 +24,7 @@
 }
 
 
-.infoPlayerNameAndAuthor > small {
+.infoPlayerNameAndAuthor>small {
     display: block;
     margin-top: -3px;
     white-space: nowrap;
@@ -36,8 +36,8 @@
 
 .audioControls {
     display: flex;
-    align-items: center; 
-    height: 100px;  
+    align-items: center;
+    height: 100px;
     justify-content: center;
     flex-direction: column;
 }
@@ -46,14 +46,14 @@
     outline: none;
     border: none;
     background-color: white;
-    border-radius: 50%; 
+    border-radius: 50%;
     width: 35px;
     height: 35px;
 }
 
 .controlSlider {
     display: flex;
-    width: 65%;  
+    width: 65%;
 }
 
 .controlSliderTime {
@@ -64,7 +64,7 @@
     margin-bottom: 3px;
 }
 
-.controlAudioLoop {  
+.controlAudioLoop {
     font-size: 23px;
     color: gray;
     margin-top: 2px;
@@ -73,20 +73,20 @@
 
 .audioControls {
     display: flex;
-    align-items: center; 
-    height: 95px;  
+    align-items: center;
+    height: 95px;
     justify-content: center;
     flex-direction: column;
 }
 
 .controlMoreOptions {
     display: flex;
-    align-items: center; 
-    height: 95px;  
-    justify-content: center; 
+    align-items: center;
+    height: 95px;
+    justify-content: center;
 }
 
-.controlAudioVolume { 
+.controlAudioVolume {
     font-size: 24px;
     color: gray;
     margin-left: 20px;
@@ -95,7 +95,7 @@
 .controlAudioReplay10 {
     font-size: 22px;
     color: gray;
-    margin-right: 27px; 
+    margin-right: 27px;
 }
 
 .controlAudioForward10 {
@@ -141,7 +141,7 @@
 .controlAudioForwardPlaylist,
 .controlAudioQueuePlaylist,
 .controlAudioLyrics {
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .controlAudioReplay10:hover,
@@ -153,4 +153,4 @@
 .controlAudioQueuePlaylist:hover,
 .controlAudioLyrics:hover {
     color: rgb(255, 255, 255)
-} 
+}

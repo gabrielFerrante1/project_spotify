@@ -1,4 +1,4 @@
-.searchInputContent { 
+.searchInputContent {
     background-color: white;
     border-radius: 20px;
     padding: 9px 15px;
@@ -6,10 +6,16 @@
     margin: 6px 8px 0px 8px;
 }
 
-.searchInputContent > input {  
+.searchInputContent>input {
     border: none;
     margin-left: 10px;
     margin-top: -4px;
     outline: none;
     width: 100%;
+}
+
+.searchIcon {
+    align-self: center;
+    font-size: 18px;
+    color: black;
 }

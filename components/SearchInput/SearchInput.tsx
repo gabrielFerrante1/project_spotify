@@ -28,7 +28,7 @@ export const SearchInput = () => {
 
     return (  
         <div className={styles.searchInputContent}>
-            <SearchOutlined style={{fontSize:'18px',color:'black'}}/>
+            <SearchOutlined className={styles.searchIcon}/>
             
             <input 
                 value={router.query.query != undefined ? router.query.query.toString() : ''}
@@ -36,7 +36,7 @@ export const SearchInput = () => {
                 type="search"
             />
 
-            <CloseOutlined onClick={clearQueryString} hidden={router.query.query == undefined || router.query.query == ''} style={{fontSize:'18px',color:'black'}}/>
+            <CloseOutlined onClick={clearQueryString} hidden={router.query.query == undefined || router.query.query == ''} className={styles.searchIcon}/>
         </div>
     )
 }

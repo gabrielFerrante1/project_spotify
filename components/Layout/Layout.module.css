@@ -1,5 +1,5 @@
-.app { 
-    height:100vh;
+.app {
+    height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -11,12 +11,12 @@
     width: 250px;
 }
 
-.appLeftBarDivUl > ul { 
+.appLeftBarDivUl>ul {
     list-style: none;
     padding: 0;
 }
 
-.appLeftBarDivUl > ul > li { 
+.appLeftBarDivUl>ul>li {
     list-style: none;
     margin: 30px 7px;
     transition: all 0.2s;
@@ -28,13 +28,13 @@
     text-overflow: ellipsis;
 }
 
-.appLeftBarDivLiDiv  {
-   display: flex;
-   color: rgb(207, 207, 207);
-   cursor: pointer;
+.appLeftBarDivLiDiv {
+    display: flex;
+    color: rgb(207, 207, 207);
+    cursor: pointer;
 }
 
-.appLeftBarDivLiDiv:hover  {
+.appLeftBarDivLiDiv:hover {
     color: rgb(255, 255, 255);
 }
 
@@ -43,11 +43,11 @@
 }
 
 .appLeftBarTexts {
-    font-size: 15.5px;
-    margin-left: 15px;
+    font-size: 15.5px !important;
+    margin-left: 15px !important;
 }
 
-.appPages { 
+.appPages {
     background-color: #181818;
     height: 90vh;
     overflow-y: auto;
@@ -61,11 +61,11 @@
 
 .appPlayer {
     border-top: 1px solid rgb(77, 77, 77);
-    position:fixed;
-    width:100%;
+    position: fixed;
+    width: 100%;
     bottom: 0;
     height: 95px;
-    background:#181818;
+    background: #181818;
     min-width: 500px;
 }
 
@@ -83,7 +83,7 @@
 .appViewPlaylist:hover {
     overflow-y: auto;
 }
- 
+
 .appViewPlaylist::-webkit-scrollbar,
 .appPages::-webkit-scrollbar {
     width: 10px;
@@ -93,15 +93,24 @@
 .appPages::-webkit-scrollbar-track {
     background: transparent;
 }
-  
+
 .appViewPlaylist::-webkit-scrollbar-thumb,
 .appPages::-webkit-scrollbar-thumb {
-    background-color: #575757; 
+    background-color: #575757;
 }
 
 .appViewPlaylist::-webkit-scrollbar-thumb:hover,
-.appPages::-webkit-scrollbar-thumb:hover{
+.appPages::-webkit-scrollbar-thumb:hover {
     background-color: #6a6969;
+}
+
+.appLeftBar>div>div {
+    background: gray;
+    margin: 0px;
+}
+
+.containerMusicsPlaylist {
+    padding: 10px;
 }
 
 @media (max-width: 770px) {

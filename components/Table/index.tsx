@@ -1,14 +1,14 @@
 import { LinearProgress, Typography } from '@mui/material';
 import { Avatar, Pagination } from 'antd';
 import * as React from 'react';
-import { Playlist } from '../../types/Playlist';
+import { Playlist } from '../../libs/types/Playlist';
 import styles from './Table.module.css';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { setIsPlayingData, setIsPlayingTrack, setPlayList } from '../../redux/reducers/playerReducer';
+import { RootState } from '../../libs/redux/store';
+import { setIsPlayingData, setIsPlayingTrack, setPlayList } from '../../libs/redux/reducers/playerReducer';
 import { useRouter } from 'next/router';
-import { setPage } from '../../redux/reducers/paginationReducer';
+import { setPage } from '../../libs/redux/reducers/paginationReducer';
 import TableItem from './TableItem';
 
 type Props = {

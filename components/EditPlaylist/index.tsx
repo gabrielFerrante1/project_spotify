@@ -1,9 +1,9 @@
 import { Typography, CircularProgress } from "@mui/material";
 import { Avatar} from "antd";
-import { MyPlaylist } from "../../types/MyPlaylist"
+import { MyPlaylist } from "../../libs/types/MyPlaylist"
 import styles from './EditPlaylist.module.css';
 import { ChangeEvent, useEffect, useState } from "react";
-import { api } from '../../utils/api';
+import { api } from '../../libs/api';
 import Backdrop from '@mui/material/Backdrop';
 import EditAvatar from "./EditPlaylistAvatar";
 import EditName from "./EditPlaylistName";

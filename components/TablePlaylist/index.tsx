@@ -1,15 +1,15 @@
 import { Typography } from '@mui/material'; 
 import { Avatar, Popconfirm, message } from 'antd';
 import * as React from 'react';
-import { Playlist } from '../../types/Playlist';
+import { Playlist } from '../../libs/types/Playlist';
 import styles from './TablePlaylist.module.css';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { setIsPlayingTrack, setPlayList, setResetAudioOnAlterationPlaylist } from '../../redux/reducers/playerReducer'; 
+import { RootState } from '../../libs/redux/store';
+import { setIsPlayingTrack, setPlayList, setResetAudioOnAlterationPlaylist } from '../../libs/redux/reducers/playerReducer'; 
 import { DeleteOutlined } from '@ant-design/icons';
-import { api } from '../../utils/api';
-import { MyPlaylist } from '../../types/MyPlaylist';
+import { api } from '../../libs/api';
+import { MyPlaylist } from '../../libs/types/MyPlaylist';
 
 type Props = {
   rows: Playlist[],

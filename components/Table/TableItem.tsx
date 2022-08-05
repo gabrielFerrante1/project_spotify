@@ -2,8 +2,8 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Typography } from '@mui/material';
 import { Avatar } from 'antd';
 import { useSelector } from "react-redux";
-import { RootState } from '../../redux/store';
-import { Playlist } from "../../types/Playlist";
+import { RootState } from '../../libs/redux/store';
+import { Playlist } from "../../libs/types/Playlist";
 import styles from './Table.module.css';
 
 type Props = {

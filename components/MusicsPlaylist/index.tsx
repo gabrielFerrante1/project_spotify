@@ -1,13 +1,13 @@
 import { Typography } from '@mui/material'; 
 import { Avatar, Divider } from 'antd';
 import * as React from 'react';
-import { Playlist } from '../../types/Playlist';
+import { Playlist } from '../../libs/types/Playlist';
 import styles from './MusicsPlaylist.module.css';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store'; 
+import { RootState } from '../../libs/redux/store'; 
 import { useRouter } from 'next/router';
-import { setIsPlayingData, setIsPlayingTrack } from '../../redux/reducers/playerReducer';
+import { setIsPlayingData, setIsPlayingTrack } from '../../libs/redux/reducers/playerReducer';
  
 export default function MusicsPlaylist( ) {
   const player = useSelector((state: RootState) => state.player); 

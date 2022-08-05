@@ -2,7 +2,7 @@ import { CheckCircleOutlined, EditOutlined } from "@ant-design/icons";
 import { Typography } from "@mui/material";
 import { Input } from "antd";
 import { ChangeEvent, useState } from 'react';
-import { api } from '../../utils/api';
+import { api } from '../../libs/api';
 import styles from './EditPlaylist.module.css';
 
 type Props = {

@@ -9,9 +9,9 @@ import VolumeDownIcon from '@mui/icons-material/VolumeDown';
 import VolumeOffIcon from '@mui/icons-material/VolumeOff';
 import ListAltOutlinedIcon from '@mui/icons-material/ListAltOutlined';  
 
-import { RootState } from '../../redux/store';
+import { RootState } from '../../libs/redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { setViewPlaylist } from '../../redux/reducers/playerReducer'; 
+import { setViewPlaylist } from '../../libs/redux/reducers/playerReducer'; 
 
 type Props = {
     audio: HTMLAudioElement,

@@ -2,14 +2,14 @@ import styles from '../styles/playlists.module.css';
 import { Avatar, Typography } from 'antd'; 
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { api } from '../utils/api'; 
+import { api } from '../libs/api'; 
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Backdrop from '@mui/material/Backdrop';
 import { CircularProgress } from '@mui/material'; 
-import { Playlist } from '../types/Playlist';
+import { Playlist } from '../libs/types/Playlist';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsPlayingData, setIsPlayingTrack, setPlayList } from '../redux/reducers/playerReducer';
-import { RootState } from '../redux/store';
+import { setIsPlayingData, setIsPlayingTrack, setPlayList } from '../libs/redux/reducers/playerReducer';
+import { RootState } from '../libs/redux/store';
 
 type ApiProps = {
     error: string,

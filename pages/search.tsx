@@ -1,12 +1,12 @@
 import { Typography } from 'antd';
 import { useEffect, useState } from 'react';
 import Table from '../components/Table';
-import { Row } from 'react-bootstrap'; 
+import { Row } from 'react-bootstrap';
 import { SearchInput } from '../components/SearchInput/SearchInput';
-import { api } from '../utils/api';
-import { Playlist } from '../types/Playlist'; 
+import { api } from '../libs/api';
+import { Playlist } from '../libs/types/Playlist'; 
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store'; 
+import { RootState } from '../libs/redux/store';
 
 type PropsJson = {
   data: Playlist[],
@@ -33,7 +33,7 @@ const Search = () => {
     setList(json.data);
     setCountList(json.count);
 
-    setLoading(false); 
+    setLoading(false);
   }
  
   useEffect(()=>{

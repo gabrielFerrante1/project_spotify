@@ -11,7 +11,7 @@ import Forward10Icon from '@mui/icons-material/Forward10';
 import Replay10Icon from '@mui/icons-material/Replay10';
 
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { RootState } from '../../libs/redux/store';
 
 type Props = {
     audio: HTMLAudioElement | undefined,

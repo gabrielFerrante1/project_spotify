@@ -4,7 +4,7 @@ import { Col, Row } from 'react-bootstrap';
 import styles from './Player.module.css';
 import { Controls } from './Controls';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { RootState } from '../../libs/redux/store';
 
 export const Player = () => {
     const player = useSelector((state: RootState) => state.player);

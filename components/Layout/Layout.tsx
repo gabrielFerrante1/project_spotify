@@ -14,8 +14,8 @@ import {
 } from 'react-bootstrap';
  
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { setViewPlaylist } from '../../redux/reducers/playerReducer';
+import { RootState } from '../../libs/redux/store';
+import { setViewPlaylist } from '../../libs/redux/reducers/playerReducer';
 import MusicsPlaylist from '../MusicsPlaylist'; 
 import Head from 'next/head'; 
 import ItemNav from './ItemNav';

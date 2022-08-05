@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { Switch } from "antd";
-import { api } from "../../utils/api";
+import { api } from "../../libs/api";
 import { PopoverGrf } from "../PopoverGrf";
 import styles from './EditPlaylist.module.css';
 

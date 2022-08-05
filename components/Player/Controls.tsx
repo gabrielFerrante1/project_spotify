@@ -24,8 +24,8 @@ import {
     StepForwardOutlined
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { setIsPlayingData, setIsPlayingTrack, setResetAudioOnAlterationPlaylist } from '../../redux/reducers/playerReducer';
+import { RootState } from '../../libs/redux/store';
+import { setIsPlayingData, setIsPlayingTrack, setResetAudioOnAlterationPlaylist } from '../../libs/redux/reducers/playerReducer';
 import { ControlsOptions } from './ControlsOptions';
 import ControlsPlayerCenter from './ControlsPlayerCenter';
 import ControlsPlayerSlider from './ControlsPlayer';

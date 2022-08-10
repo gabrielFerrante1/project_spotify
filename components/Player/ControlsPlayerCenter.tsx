@@ -10,18 +10,19 @@ import {
 import Forward10Icon from '@mui/icons-material/Forward10';
 import Replay10Icon from '@mui/icons-material/Replay10';
 
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../libs/redux/store';
+import { setPause } from '../../libs/redux/reducers/playerReducer';
 
 type Props = {
     audio: HTMLAudioElement | undefined,
-    isPlaying: boolean,
-    setIsPlaying: (a: boolean) => void,
+    isPlaying: boolean, 
     setValueTime: (a: number) => void,
     alterTrack: (type: string) => void
 }
 
-export default ({ audio, isPlaying, setIsPlaying, setValueTime, alterTrack }: Props) => {
+export default ({ audio, isPlaying, setValueTime, alterTrack }: Props) => {
+    const dispatch = useDispatch()
     const player = useSelector((state: RootState) => state.player);
 
     const alter10SecondsTime = (payload: string) => {
@@ -37,11 +38,9 @@ export default ({ audio, isPlaying, setIsPlaying, setValueTime, alterTrack }: Pr
 
     const togglePlay = () => {
         if (isPlaying) {
-            audio?.pause();
-            setIsPlaying(false);
+            dispatch(setPause(true))
         } else {
-            audio?.play();
-            setIsPlaying(true);
+            dispatch(setPause(false))
         }
     }
     return (

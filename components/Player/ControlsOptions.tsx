@@ -49,7 +49,7 @@ export const  ControlsOptions = (p: Props) => {
         }
     }
 
-    const handleChangeVolume = (event: Event, newValue: number | number[]) => {
+    const handleChangeVolume = (_event: Event, newValue: number | number[]) => {
         if (typeof newValue === 'number') {
             if(!isNaN(p.audio.volume)) {
                 p.audio.volume =  newValue / 100;
@@ -63,7 +63,6 @@ export const  ControlsOptions = (p: Props) => {
     const toggleViewPlaylist = () => {
         dispatch(setViewPlaylist(!player.viewPlaylist))
     }
- 
 
     return (
         <>  
@@ -95,13 +94,11 @@ export const  ControlsOptions = (p: Props) => {
             <Slider 
                 size='small'
                 style={{width:'40%',marginLeft:'16px',color:'white'}}
-                aria-label="Volume"  
+                aria-label="Volume"
                 value={p.volume}
                 onChange={handleChangeVolume}
                 max={100}
             />
-
-           
         </>
     )
 }

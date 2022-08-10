@@ -7,13 +7,14 @@ import styles from './EditPlaylist.module.css';
 type Props = {
     id: string,
     playlistPrivacy: number | undefined,
+    userJwt: string;
     setEdit: (value: boolean) => void,
 }
 
-export default ({ id, playlistPrivacy, setEdit }: Props) => {
+export default ({ id, playlistPrivacy, userJwt, setEdit }: Props) => {
     const editedPrivacy = async () => {
         setEdit(false);
-        await api(`playlist/edit/${id}`, 'post', { privacy: true }, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjUwOTI1MjU0LCJuYmYiOjE2NTA5MjUyNTQsImp0aSI6Im1QVzBNbUhCb21MbTFhS2siLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.h8b99aiGXJG8jMvKuiN-ZODj4hCbtYubCq7QP0PcS3I');
+        await api(`playlist/edit/${id}`, 'post', { privacy: true }, userJwt);
         setEdit(true);
     }
 

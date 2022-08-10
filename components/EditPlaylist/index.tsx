@@ -1,22 +1,27 @@
 import { Typography, CircularProgress } from "@mui/material";
-import { Avatar} from "antd";
+import { Avatar } from "antd";
 import { MyPlaylist } from "../../libs/types/MyPlaylist"
 import styles from './EditPlaylist.module.css';
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { api } from '../../libs/api';
 import Backdrop from '@mui/material/Backdrop';
 import EditAvatar from "./EditPlaylistAvatar";
 import EditName from "./EditPlaylistName";
 import EditPrivacy from "./EditPlaylistPrivacy";
-import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import { useDispatch } from "react-redux";
+import { setReloadPlaylists } from "../../libs/redux/reducers/clientInfosReducer";
 
 type Props = {
-    data: MyPlaylist,
-    id: number
+    data: MyPlaylist
 }
 
 export default ({ data }: Props) => {
+    const dispatch = useDispatch()
+
+    const { data: sessionClient } = useSession();
+
     const router = useRouter();
     const { id } = router.query;
 
@@ -28,16 +33,21 @@ export default ({ data }: Props) => {
         if (edit) {
             const exec = async () => {
                 setLoading(true);
-                setDataPlaylist(await api(`playlist/${id}`, 'get', {}, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjUwOTI1MjU0LCJuYmYiOjE2NTA5MjUyNTQsImp0aSI6Im1QVzBNbUhCb21MbTFhS2siLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.h8b99aiGXJG8jMvKuiN-ZODj4hCbtYubCq7QP0PcS3I'));
+                setDataPlaylist(await api(`playlist/${id}`, 'get', {}, sessionClient?.user.jwt));
                 setLoading(false);
             };
+
             exec();
+
+            dispatch(setReloadPlaylists(true))
         }
-    }, [edit]);
+
+        setDataPlaylist(data)
+    }, [edit, data]);
 
     return (
         <div className={styles.content}>
-            <Backdrop sx={{ color: '#fff' }} open={loading}>
+            <Backdrop className="text-white" open={loading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
 
@@ -46,12 +56,15 @@ export default ({ data }: Props) => {
                     shape="square"
                     size={140}
                     src={dataPlaylist?.playlist?.avatar}
-                    className={styles.avatar} />
+                    className={styles.avatar}
+                />
 
                 <div className={styles.uploadAvatar}>
                     <EditAvatar
                         id={id as string}
-                        setEdit={setEdit} />
+                        setEdit={setEdit}
+                        userJwt={sessionClient?.user.jwt as string}
+                    />
                 </div>
             </div>
 
@@ -65,26 +78,19 @@ export default ({ data }: Props) => {
                 <EditName
                     id={id as string}
                     playlistName={dataPlaylist?.playlist?.name}
-                    setEdit={setEdit} />
+                    setEdit={setEdit}
+                    userJwt={sessionClient?.user.jwt as string}
+                />
 
                 {dataPlaylist?.playlist != undefined ?
                     <EditPrivacy
                         id={id as string}
                         playlistPrivacy={dataPlaylist?.playlist?.privacy}
-                        setEdit={setEdit} />
+                        setEdit={setEdit}
+                        userJwt={sessionClient?.user.jwt as string}
+                    />
                     : ''}
             </div>
         </div>
     )
-}
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const id = context.query.id
-    const data: MyPlaylist = await api(`playlist/${id}`, 'get', {}, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjUwOTI1MjU0LCJuYmYiOjE2NTA5MjUyNTQsImp0aSI6Im1QVzBNbUhCb21MbTFhS2siLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.h8b99aiGXJG8jMvKuiN-ZODj4hCbtYubCq7QP0PcS3I');
-
-    return {
-        props: {
-            data
-        }
-    }
 }

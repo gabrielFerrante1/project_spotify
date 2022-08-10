@@ -1,9 +1,7 @@
 import { ReactElement, useEffect } from 'react';
-import { useRouter } from "next/router";
 import { Player } from '../Player/Player';
 
 import styles from './Layout.module.css';
-import Typography from '@mui/material/Typography';
 
 import {
     Divider
@@ -12,14 +10,19 @@ import {
 import {
     Container
 } from 'react-bootstrap';
- 
+
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../libs/redux/store';
-import { setViewPlaylist } from '../../libs/redux/reducers/playerReducer';
-import MusicsPlaylist from '../MusicsPlaylist'; 
-import Head from 'next/head'; 
+import { setIsPlayingData, setIsPlayingMusic, setPause, setPlayList, setViewPlaylist } from '../../libs/redux/reducers/playerReducer';
+import MusicsPlaylist from '../MusicsPlaylist';
+import Head from 'next/head';
 import ItemNav from './ItemNav';
-
+import { signIn, useSession } from 'next-auth/react';
+import { MyPlaylists, Playlist } from '../../libs/types/MyPlaylist';
+import { setInfosPlaylists, setReloadPlaylists } from '../../libs/redux/reducers/clientInfosReducer';
+import { api } from '../../libs/api';
+import ListMyPlaylists from './MyPlaylists';
+import { LastMusic } from '../../libs/types/Music';
 
 //Types desse componente
 type Props = {
@@ -27,19 +30,55 @@ type Props = {
 }
 
 export const Layout = ({ children }: Props) => {
-    const player = useSelector((state: RootState) => state.player);
-    const router = useRouter();
-    const dispatch = useDispatch();
+    const { data: sessionClient, status: statusClient } = useSession()
 
-    const redirect = (url: string) => {
-        router.push(url);
-    }
+    const infos = useSelector((state: RootState) => state.clientInfos)
+    const player = useSelector((state: RootState) => state.player);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (player.playlist.length <= 1) {
             dispatch(setViewPlaylist(false))
         }
     }, [player.playlist]);
+
+    const getPlaylists = async () => {
+        const data: MyPlaylists = await api('playlist', 'get', {}, sessionClient?.user.jwt);
+        dispatch(setInfosPlaylists(data.playlist))
+
+        if (player.isPlayingData.tipo == 'Playlist' && player.playlist.length >= 1) {
+            const musics = data.playlist.find(playlist => playlist.id == player.isPlayingData.id)
+
+            if (musics != undefined) dispatch(setPlayList(musics.musics))
+        }
+ 
+    }
+
+    const getLastMusic = async () => {
+        const data: LastMusic = await api('music-heard', 'get', {}, sessionClient?.user.jwt);
+
+        if (data.error === '') {
+            dispatch(setPlayList([data.music]))
+            dispatch(setIsPlayingMusic(0))
+            dispatch(setIsPlayingData({
+                id: data.music.id,
+                tipo: 'Música'
+            }));
+        }
+    }
+
+    useEffect(() => {
+        if (sessionClient && infos.playlists.length == 0 || infos.reloadPlaylists) {
+            dispatch(setReloadPlaylists(false))
+            getPlaylists();
+        }
+    }, [statusClient, infos.reloadPlaylists]);
+
+    useEffect(() => { 
+        if (sessionClient) {
+            getLastMusic();
+        }
+    }, [statusClient]);
 
     return (
         <div className={styles.app}>
@@ -68,12 +107,22 @@ export const Layout = ({ children }: Props) => {
                     </ul>
 
                     <Divider dashed className={styles.appDivider} />
+
+                    {statusClient != 'loading' && statusClient == 'unauthenticated' ?
+                        <button onClick={() => signIn()} className={styles.appBtnLogIn}>Fazer login</button>
+                        :
+                        <div className={styles.containerMyPlaylists}>
+                            <ListMyPlaylists />
+                        </div>
+                    }
                 </div>
             </section>
 
-            <section className={styles.appPages}>
-                {children}
-            </section>
+            <div className={styles.containerAppPages}>
+                <section className={styles.appPages}>
+                    {children}
+                </section>
+            </div>
 
             <section
                 style={{ width: player.viewPlaylist ? '470px' : 0 }}
@@ -86,7 +135,7 @@ export const Layout = ({ children }: Props) => {
 
             <section className={`${styles.appPlayer}`}>
                 <Player />
-            </section> 
+            </section>
         </div>
     )
 } 

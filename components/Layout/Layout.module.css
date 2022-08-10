@@ -3,21 +3,25 @@
     overflow: hidden;
     display: flex;
     flex-direction: row;
+    background-color: #181818;
 }
 
 .appLeftBar {
     background-color: black;
     min-width: 200px;
     width: 250px;
+    max-height: 90%;
+    overflow: auto;
 }
 
 .appLeftBarDivUl>ul {
     list-style: none;
     padding: 0;
+    margin-left: 10px;
+
 }
 
 .appLeftBarDivUl>ul>li {
-    list-style: none;
     margin: 30px 7px;
     transition: all 0.2s;
     -webkit-transition: all 0.2s;
@@ -39,7 +43,7 @@
 }
 
 .appLeftBarIcons {
-    font-size: 25px;
+    font-size: 23px;
 }
 
 .appLeftBarTexts {
@@ -47,12 +51,54 @@
     margin-left: 15px !important;
 }
 
+.appBtnLogIn {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    background: transparent;
+    color: white;
+    border: 1px solid rgb(10, 212, 61);
+    padding: 9px 49px;
+    font-size: 14.5px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.appBtnLogIn:hover {
+    background: rgb(10, 212, 61);
+    color: rgb(24, 24, 24);
+}
+
+.playlistUl {
+    list-style: none;
+    padding: 10px 20px;
+}
+
+.playlistUl>li {
+    font-size: 14.5px;
+    cursor: pointer;
+    padding-bottom: 17px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgb(189, 189, 189);
+}
+
+.playlistUl>li:hover {
+    color: white;
+}
+
+.containerAppPages {
+    background-color: #181818;
+    width: 100%;
+    height: 90%;
+}
+
 .appPages {
     background-color: #181818;
-    height: 90vh;
-    overflow-y: auto;
-    min-width: 700px;
-    width: 100%;
+    height: 100%;
+    overflow: auto;
 }
 
 .activeRoute {
@@ -80,31 +126,40 @@
     -moz-transition: all 1s;
 }
 
-.appViewPlaylist:hover {
+.activePlaylist {
+    color: rgb(10, 212, 61) !important;
+}
+
+.appViewPlaylist:hover,
+.appLeftBar:hover {
     overflow-y: auto;
 }
 
 .appViewPlaylist::-webkit-scrollbar,
-.appPages::-webkit-scrollbar {
+.appPages::-webkit-scrollbar,
+.appLeftBar::-webkit-scrollbar {
     width: 10px;
 }
 
 .appViewPlaylist::-webkit-scrollbar-track,
-.appPages::-webkit-scrollbar-track {
+.appPages::-webkit-scrollbar-track,
+.appLeftBar::-webkit-scrollbar-track {
     background: transparent;
 }
 
 .appViewPlaylist::-webkit-scrollbar-thumb,
-.appPages::-webkit-scrollbar-thumb {
+.appPages::-webkit-scrollbar-thumb,
+.appLeftBar::-webkit-scrollbar-thumb {
     background-color: #575757;
 }
 
 .appViewPlaylist::-webkit-scrollbar-thumb:hover,
-.appPages::-webkit-scrollbar-thumb:hover {
+.appPages::-webkit-scrollbar-thumb:hover,
+.appLeftBar::-webkit-scrollbar-thumb:hover {
     background-color: #6a6969;
 }
 
-.appLeftBar>div>div {
+.appDivider {
     background: gray;
     margin: 0px;
 }

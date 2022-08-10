@@ -5,14 +5,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
 import { store } from '../libs/redux/store';
 import { Layout } from '../components/Layout/Layout';
+import { SessionProvider } from 'next-auth/react'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     return (
         <Provider store={store}>
-            <Layout>
-                <Component {...pageProps} />
-            </Layout>
-        </Provider>
+            <SessionProvider session={session}>
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            </SessionProvider >
+        </Provider >
     )
 }
 

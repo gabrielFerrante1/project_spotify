@@ -3,7 +3,7 @@ import {createSlice, PayloadAction } from '@reduxjs/toolkit';
 const page: number = 1;
 
 export const slice = createSlice({
-    name: 'player',
+    name: 'pagination',
     initialState: {
         page
     },

@@ -1,12 +1,18 @@
-import { Playlist } from "./Playlist"
+import { ApiResponse } from "./Api"
+import { Music } from "./Music"
 
-export type MyPlaylist = {
-    error: string,
-    playlist?: {
-        id: number,
-        name: string,
-        avatar: string,
-        privacy: number,
-        musics: Playlist[]
-    }
+export type Playlist = {
+    id: number,
+    name: string,
+    avatar: string,
+    privacy: number,
+    musics: Music[]
+}
+
+export type MyPlaylists = ApiResponse & {
+    playlist: Playlist[]
+}
+
+export type MyPlaylist = ApiResponse & {
+    playlist?: Playlist
 }

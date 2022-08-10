@@ -1,38 +1,52 @@
 import styles from '../styles/playlists.module.css';
-import { Avatar, Typography } from 'antd'; 
+import { Avatar, Typography } from 'antd';
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import { api } from '../libs/api'; 
+import { api } from '../libs/api';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Backdrop from '@mui/material/Backdrop';
-import { CircularProgress } from '@mui/material'; 
-import { Playlist } from '../libs/types/Playlist';
+import { CircularProgress } from '@mui/material';
+import { Music } from '../libs/types/Music';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsPlayingData, setIsPlayingTrack, setPlayList } from '../libs/redux/reducers/playerReducer';
+import { setIsPlayingData, setIsPlayingMusic, setPlayList } from '../libs/redux/reducers/playerReducer';
 import { RootState } from '../libs/redux/store';
+import { GetServerSideProps } from 'next';
+import { unstable_getServerSession } from 'next-auth';
+import { authOptions } from './api/auth/[...nextauth]';
+import { User } from '../libs/types/AuthUser';
+import { setReloadPlaylists } from '../libs/redux/reducers/clientInfosReducer';
+import { Playlist } from '../libs/types/MyPlaylist';
 
 type ApiProps = {
     error: string,
-    playlist: Playlist[]
+    playlist: Music[]
 }
 
-const Playlists = () => {
+type Props = {
+    user: User
+}
+
+const Playlists = ({ user }: Props) => {
     const { Text } = Typography;
 
-    const player = useSelector((state: RootState) => state.player);
-    const router = useRouter();
     const dispatch = useDispatch();
+    const player = useSelector((state: RootState) => state.player);
+    const infos = useSelector((state: RootState) => state.clientInfos);
+    
+    const router = useRouter();
 
-    const [loading, setLoading] = React.useState(false);
-    const [list, setList] = React.useState<Playlist[]>([]);
+
+    const [loading, setLoading] = React.useState(false); 
 
     //New playlist
     const newPlaylist = async () => {
         setLoading(true);
-        const data = await api('playlist/new', 'post', {}, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjUwOTI1MjU0LCJuYmYiOjE2NTA5MjUyNTQsImp0aSI6Im1QVzBNbUhCb21MbTFhS2siLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.h8b99aiGXJG8jMvKuiN-ZODj4hCbtYubCq7QP0PcS3I');
+        const data = await api('playlist/new', 'post', {}, user.jwt);
 
         router.push(`playlist/${data.id}`);
         setLoading(false)
+
+        dispatch(setReloadPlaylists(true))
     }
 
     const goToPlaylist = async (id: number) => {
@@ -40,72 +54,77 @@ const Playlists = () => {
     }
 
     const playTracks = (item: Playlist) => {
-        if(item.musics != undefined) {
+        if (item.musics != undefined) {
             dispatch(setPlayList(item.musics));
         }
-   
-        dispatch(setIsPlayingTrack(0));
+
+        dispatch(setIsPlayingMusic(0));
         dispatch(setIsPlayingData({
             id: item.id,
             tipo: 'Playlist'
         }))
     }
 
-    React.useEffect(()=>{
-        const getPlaylists = async () => {
-            setLoading(true); 
-            const data: ApiProps = await api('playlist', 'get', {}, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjUwOTI1MjU0LCJuYmYiOjE2NTA5MjUyNTQsImp0aSI6Im1QVzBNbUhCb21MbTFhS2siLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.h8b99aiGXJG8jMvKuiN-ZODj4hCbtYubCq7QP0PcS3I');
-             
-            if(data.playlist != undefined) { 
-                setList(data.playlist); 
-            }
-
-            setLoading(false); 
-        }
-
-        getPlaylists();
-    }, []);
 
     return (
         <>
-            <Backdrop  sx={{ color: '#fff' }} open={loading}>
+            <Backdrop sx={{ color: '#fff' }} open={loading}>
                 <CircularProgress color="inherit" />
             </Backdrop>
-        
-            <div style={{margin:'0 30px'}}> 
+
+            <div style={{ margin: '0 30px' }}>
                 <div className={styles.contentHeader}>
-                    <div style={{flex:1,alignSelf:'flex-end'}}>
-                        <Text style={{fontSize:'24px',color:'white'}} strong>Minhas playlists</Text>
+                    <div style={{ flex: 1, alignSelf: 'flex-end' }}>
+                        <Text style={{ fontSize: '24px', color: 'white' }} strong>Minhas playlists</Text>
                     </div>
- 
+
                     <button
                         onClick={newPlaylist}
                         className={styles.contentHeaderButton}
                         disabled={loading}
-                    > 
+                    >
                         Criar uma playlist
                     </button>
                 </div>
 
                 <div className={styles.contentBody}>
                     <div className={styles.contentListPlaylist}>
-                        {list.map((item, index) => (  
-                            <div key={index}  className={styles.playlist}> 
-                                <Avatar className={styles.playlistAvatar} src={item.avatar}/> 
-                               
+                        {infos.playlists.map((item, index) => (
+                            <div key={index} className={styles.playlist}>
+                                <Avatar className={styles.playlistAvatar} src={item.avatar} />
+
                                 <div hidden={player.isPlayingData.id == item.id && player.isPlayingData.tipo == 'Playlist' ? true : false} className={styles.playlistPlayButton}>
-                                    <button disabled={loading} onClick={()=>playTracks(item)}>
+                                    <button disabled={loading} onClick={() => playTracks(item)}>
                                         <PlayArrowIcon />
-                                    </button> 
-                                </div> 
-                                <Text onClick={()=>goToPlaylist(item.id)} className={`${styles.playlistName} ${player.isPlayingData.id == item.id && player.isPlayingData.tipo == 'Playlist' ? styles.activePlaylist : ''}`} strong>{item.name}</Text>
-                            </div>  
+                                    </button>
+                                </div>
+                                <Text onClick={() => goToPlaylist(item.id)} className={`${styles.playlistName} ${player.isPlayingData.id == item.id && player.isPlayingData.tipo == 'Playlist' ? styles.activePlaylist : ''}`} strong>{item.name}</Text>
+                            </div>
                         ))}
                     </div>
-                </div> 
+                </div>
             </div>
         </>
     )
-} 
+}
 
 export default Playlists;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const session = await unstable_getServerSession(
+        context.req, context.res, authOptions
+    )
+    if (!session) return { redirect: { destination: '/login', permanent: true } }
+
+    return {
+        props: {
+            user: session.user,
+        }
+    }
+}
+
+
+
+
+
+

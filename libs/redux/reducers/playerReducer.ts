@@ -1,16 +1,14 @@
-import {createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import type { InfoTrack } from '../../types/InfoTrack';
-import type { Playlist } from '../../types/Playlist';
+import type { Music } from '../../types/Music';
 
 
-const playlist: Playlist[] = [
-    {id:1, name: '', path: '', avatar: '', author: '', tipo: 'Música', privacy: 1},
-];
+const playlist: Music[] = [];
 
-const dataPlaying: InfoTrack= {
+const dataPlaying: InfoTrack = {
     id: 0,
-    tipo: '' 
+    tipo: ''
 }
 
 export const slice = createSlice({
@@ -18,20 +16,21 @@ export const slice = createSlice({
     initialState: {
         srcAudio: '',
         playlist: playlist,
-        isPlaying: -1,
+        isPlayingMusic: -1,
         isPlayingData: dataPlaying,
         viewPlaylist: false,
-        resetAudioOnAlterationPlaylist: true
+        resetAudioOnAlterationPlaylist: true,
+        pause: false 
     },
     reducers: {
         setSrcAudio: (state, action) => {
             state.srcAudio = action.payload
         },
-        setPlayList: (state, action: PayloadAction<Playlist[]>) => {
-            state.playlist = action.payload; 
+        setPlayList: (state, action: PayloadAction<Music[]>) => {
+            state.playlist = action.payload;
         },
-        setIsPlayingTrack: (state, action: PayloadAction<number>) => {
-            state.isPlaying = action.payload;
+        setIsPlayingMusic: (state, action: PayloadAction<number>) => {
+            state.isPlayingMusic = action.payload;
         },
         setIsPlayingData: (state, action: PayloadAction<InfoTrack>) => {
             state.isPlayingData = action.payload;
@@ -41,11 +40,18 @@ export const slice = createSlice({
         },
         setResetAudioOnAlterationPlaylist: (state, action: PayloadAction<boolean>) => {
             state.resetAudioOnAlterationPlaylist = action.payload;
-        }
+        },
+        setPause: (state, action: PayloadAction<boolean>) => {
+            state.pause = action.payload;
+        }  
     }
 });
 
 //Exportando ações do reducer
-export const {setSrcAudio, setPlayList, setIsPlayingTrack, setIsPlayingData, setViewPlaylist, setResetAudioOnAlterationPlaylist} = slice.actions;
+export const {
+    setSrcAudio, setPlayList, setIsPlayingMusic,
+    setIsPlayingData, setViewPlaylist, setResetAudioOnAlterationPlaylist,
+    setPause
+} = slice.actions;
 
 export default slice.reducer;

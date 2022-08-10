@@ -9,7 +9,6 @@ type Props = {
 }
 
 const { Title } = Typography;
- 
 
 export const PopoverGrf = ({children, title}: Props) => { 
     return (
@@ -17,7 +16,7 @@ export const PopoverGrf = ({children, title}: Props) => {
             content={() => (
                 <Title style={{margin:'0',padding:0}} level={5}>
                     {title}
-                </Title> 
+                </Title>
             )}
         >
 

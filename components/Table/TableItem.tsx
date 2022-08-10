@@ -1,21 +1,27 @@
+import { PauseOutlined } from '@ant-design/icons';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { Typography } from '@mui/material';
 import { Avatar } from 'antd';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setPause } from '../../libs/redux/reducers/playerReducer';
 import { RootState } from '../../libs/redux/store';
-import { Playlist } from "../../libs/types/Playlist";
+import { Music } from "../../libs/types/Music";
+import AddOnPlaylist from '../AddOnPlaylist';
 import styles from './Table.module.css';
 
 type Props = {
     index: number,
-    item: Playlist,
+    item: Music,
     onClick: () => void
 }
 
 export default ({ index, item, onClick }: Props) => {
+    const dispatch = useDispatch()
     const player = useSelector((state: RootState) => state.player);
 
     const conditionPlayButton = player.isPlayingData.id == item.id && player.isPlayingData.tipo == item.tipo;
+
+    const handleStopMusic = () => dispatch(setPause(true))
 
     return (
         <tr className={styles.contentTR}>
@@ -24,11 +30,19 @@ export default ({ index, item, onClick }: Props) => {
                     {index + 1}
                 </Typography>
 
-                <PlayArrowIcon
-                    onClick={onClick}
-                    style={{ cursor: 'pointer' }}
-                    className={conditionPlayButton ? 'd-none' : styles.titleActionMusic}
-                />
+
+                {conditionPlayButton && !player.pause ?
+                    <PauseOutlined
+                        className={`${styles.titleActionMusic} ${styles.iconPause}`}
+                        onClick={handleStopMusic}
+                    />
+                    :
+                    <PlayArrowIcon
+                        style={{ cursor: 'pointer' }}
+                        onClick={onClick}
+                        className={styles.titleActionMusic}
+                    />
+                }
             </td>
             <td className={styles.titleTH}>
                 <Avatar
@@ -38,13 +52,25 @@ export default ({ index, item, onClick }: Props) => {
                 />
 
                 <div className={styles.titleNames}>
-                    <Typography
-                        className={player.isPlayingData.id == item.id && player.isPlayingData.tipo == item.tipo ?
-                            styles.activeMusic : ''}
-                        variant="caption"
-                    >
-                        {item.name}
-                    </Typography>
+                    <div className={styles.titleArea}>
+                        <Typography
+                            className={conditionPlayButton ?
+                                styles.activeMusic : ''}
+                            variant="caption"
+                        >
+                            {item.name}
+
+                        </Typography>
+
+                        {item.tipo == 'Música' &&
+                            <div className={styles.addOnPlaylist}>
+                                <AddOnPlaylist
+                                    idMusic={item.id}
+                                />
+                            </div>
+                        }
+                    </div>
+
 
                     <small>
                         {item.author}

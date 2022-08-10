@@ -1,0 +1,83 @@
+.container {
+    margin: 0 30px;
+}
+
+.textSearch {
+    font-size: 24px;
+    margin-bottom: 7px;
+    color: white;
+}
+
+.rowGenre {
+    margin-top: 60px;
+}
+
+.gridGenres {
+    display: grid;
+    grid-template-columns: auto auto auto; 
+}
+
+.genre {
+    width: auto;
+    height: 130px;
+    border-radius: 10px;
+    padding: 0px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.textGenre {
+    color: rgb(241, 241, 241);
+    font-size: 20px;
+    margin-bottom: 9px;
+}
+
+.genrePurple {
+    background-color: rgb(75, 1, 202);
+}
+
+.genreGreen {
+    background-color: rgb(1, 155, 1);
+}
+
+.genreBlue {
+    background-color: rgb(1, 101, 231);
+}
+
+.genreBrown {
+    background-color: rgba(167, 114, 0, 0.918);
+}
+
+.genreAqua {
+    background-color: rgb(0, 147, 192);
+}
+
+.genreRed {
+    background-color: rgb(168, 49, 2);
+}
+
+.textRowGenre {
+    font-size: 22px;
+    margin-left: 7px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.genrePink {
+    background-color: rgb(207, 4, 207);
+}
+
+.genreOrange {
+    background-color: rgb(255, 127, 0);
+}
+
+.genreGray {
+    background-color: rgb(145, 145, 145);
+}
+
+.genreHightBlue {
+    background-color: rgb(20, 36, 187)
+}

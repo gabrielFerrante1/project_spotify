@@ -7,3 +7,16 @@
     border-top: 1px solid rgb(157, 157, 157);
     padding-top: 10px;
 }
+ 
+.notFoundMusics {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    color: white; 
+}
+
+.listMusics {
+    padding:  0 10px;
+    margin-top: 5px;
+}

@@ -1,52 +1,66 @@
-import { LinearProgress, Typography } from '@mui/material';
-import { Avatar, Pagination } from 'antd';
+import { Typography } from '@mui/material'; 
 import * as React from 'react';
-import { Playlist } from '../../libs/types/Playlist';
+import { Music } from '../../libs/types/Music';
 import styles from './Table.module.css';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../libs/redux/store';
-import { setIsPlayingData, setIsPlayingTrack, setPlayList } from '../../libs/redux/reducers/playerReducer';
-import { useRouter } from 'next/router';
-import { setPage } from '../../libs/redux/reducers/paginationReducer';
+import { setIsPlayingData, setIsPlayingMusic, setPause, setPlayList, setResetAudioOnAlterationPlaylist } from '../../libs/redux/reducers/playerReducer'; 
 import TableItem from './TableItem';
 
 type Props = {
-    rows: Playlist[],
-    rowsCount: number,
-    loading: boolean
+    rows: Music[],
+    rowsCount: number
 }
 
-export default function Table({ rows, rowsCount, loading }: Props) {
-    const player = useSelector((state: RootState) => state.player);
-    const pagination = useSelector((state: RootState) => state.pagination);
-
+export default function Table({ rows, rowsCount }: Props) {
+    const player = useSelector((state: RootState) => state.player); 
+ 
     const dispatch = useDispatch();
-    const router = useRouter();
 
-    const [list, setList] = React.useState<Playlist[]>(rows)
+    const [list, setList] = React.useState<Music[]>(rows)
     const [listCount, setListCount] = React.useState(rowsCount);
 
-    const setTracks = (item: Playlist) => {
+    const setTracks = (item: Music) => {
+        dispatch(setPause(false))
+
         if (item.tipo == 'Música') {
+            if (player.isPlayingData.tipo == 'Música' && player.isPlayingData.id == item.id) {
+                dispatch(setResetAudioOnAlterationPlaylist(false))
+
+                return;
+            } else {
+                dispatch(setResetAudioOnAlterationPlaylist(true))
+            }
+
+
             dispatch(setPlayList([
                 item
             ]));
 
-            dispatch(setIsPlayingTrack(0));
+            dispatch(setIsPlayingMusic(0));
 
             dispatch(setIsPlayingData({
                 id: item.id,
                 tipo: item.tipo
             }));
+
         } else if (item.tipo == 'Playlist') {
+            if (player.isPlayingData.tipo == 'Playlist' && player.isPlayingData.id == item.id) {
+                dispatch(setResetAudioOnAlterationPlaylist(false))
+
+                return;
+            } else {
+                dispatch(setResetAudioOnAlterationPlaylist(true))
+            }
+
+
             if (item.musics != undefined) {
                 dispatch(setPlayList(
                     item.musics
                 ));
             }
 
-            dispatch(setIsPlayingTrack(0));
+            dispatch(setIsPlayingMusic(0));
 
             dispatch(setIsPlayingData({
                 id: item.id,
@@ -54,45 +68,15 @@ export default function Table({ rows, rowsCount, loading }: Props) {
             }));
         }
     }
-
-    const handleChangePaginate = (pageNumber: number) => {
-        dispatch(setPage(pageNumber));
-    }
+ 
 
     React.useEffect(() => {
-        let query: string = '';
-        if (router.query.query != undefined) query = router.query.query.toString().toLowerCase();
-
-        const result = rows.filter((value) => {
-            const valueLower = value.name.toLowerCase();
-
-            if ((query != '' ? valueLower.indexOf(query) != -1 : true)) {
-                return value;
-            }
-        });
-
-        setList(result);
-
-        if (query != '') {
-            setListCount(result.length);
-        } else {
-            setListCount(rowsCount);
-        }
-
-    }, [router.query, loading]);
-
-    React.useEffect(() => {
-        setListCount(rowsCount)
-    }, [loading]);
-
+        setList(rows)
+        setListCount(rowsCount);
+    }, [rows]);
 
     return (
         <div>
-            <div hidden={!loading} style={{ margin: '5px 0 20px 0' }}>
-                <LinearProgress color="success" />
-            </div>
-
-
             <table className={styles.tableTracks}>
                 <thead>
                     <tr>
@@ -124,16 +108,7 @@ export default function Table({ rows, rowsCount, loading }: Props) {
                         />
                     ))}
                 </tbody>
-            </table>
-
-            <Pagination
-                style={{ marginTop: '20px' }}
-                defaultPageSize={15}
-                current={pagination.page}
-                onChange={handleChangePaginate}
-                total={listCount}
-                hideOnSinglePage
-            />
+            </table> 
         </div>
     );
 }

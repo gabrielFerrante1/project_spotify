@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.iconUser {
+    font-size: 40px;
+    color: rgb(10, 212, 61);
+    margin-right: 10px;
+}
+
+.textUser {
+    font-size: 15px;
+    color: rgb(236, 236, 236);
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+.containerInput {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 70%;
+}
+
+.input {
+    margin-top: 40px;
+}
+
+.notHaveAccount {
+    color: rgba(194, 194, 194, 0.836);
+    flex: 1;
+}
+
+.notHaveAccount>button { 
+    color: rgb(10, 212, 61);
+    font-weight: 500; 
+    background: none;
+    border: none;
+}
+
+.containerFooter {
+    width: 70%;
+    display: flex; 
+    align-items: center;
+    margin: 30px auto;
+}
+
+.btnActionAuth {
+   background-color: rgb(10, 212, 61);
+   color: black;
+   font-weight: 700;
+   padding: 5px 30px;
+   border-radius: 20px;
+   font-size: 17px; 
+}
+
+.alertError { 
+    width: 35%;
+    margin: 0 auto 27px auto;
+    color: white;
+}

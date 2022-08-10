@@ -33,7 +33,7 @@ export default ({ label, url }: Props) => {
             <div className="align-self-center">
                 <Typography
                     className={styles.appLeftBarTexts}
-                    variant="h6"
+                    variant="h5"
                     gutterBottom
                     component="span"
                 >

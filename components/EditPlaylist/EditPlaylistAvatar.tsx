@@ -4,14 +4,15 @@ import { Button, message, Upload } from "antd";
 type Props = {
     id: string,
     setEdit: (edit: boolean) => void,
+    userJwt: string
 }
 
-export default ({ id, setEdit }: Props) => {
+export default ({ id, setEdit, userJwt }: Props) => {
     const props = {
         name: 'file',
         action: `${process.env.REACT_APP_BASE_URL_API}/playlist/edit/${id}`,
         headers: {
-            Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjUwOTI1MjU0LCJuYmYiOjE2NTA5MjUyNTQsImp0aSI6Im1QVzBNbUhCb21MbTFhS2siLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.h8b99aiGXJG8jMvKuiN-ZODj4hCbtYubCq7QP0PcS3I',
+            Authorization: `Bearer ${userJwt}`,
         }
     };
 

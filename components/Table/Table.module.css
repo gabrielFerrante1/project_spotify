@@ -23,13 +23,13 @@
     flex-direction: column;
 }
 
-.titleNames > span {
+.titleArea > span {
     color: rgb(215, 215, 215);
     font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 490px;
+    max-width: 50em; 
 }
 
 .titleNames > small { 
@@ -53,6 +53,15 @@
    margin-left: -6px;
 }
 
+.iconPause {
+    color: rgb(228, 227, 227);
+    background-color: rgb(25, 215, 4);
+    font-size: 21px;
+    border-radius: 50%;
+    margin-left: -6px;
+    padding-top: 3px;
+}
+
 .titleId {
     font-size: 15px;
     font-weight: 400;   
@@ -72,4 +81,12 @@
 .activeMusic {
     color: rgb(10, 212, 61) !important;
 }
- 
+
+.addOnPlaylist {
+    margin-left: 15px; 
+}
+
+.titleArea {
+    display: flex;
+    align-items: center;
+}

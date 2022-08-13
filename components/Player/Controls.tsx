@@ -98,8 +98,7 @@ export const Controls = () => {
         }
     }, [player.playlist, player.isPlayingMusic]);
 
-    const setNewMusicHeard = async () => {
-        console.log(sessionClient)
+    const setNewMusicHeard = async () => { 
         if (player.isPlayingData.tipo == 'Música') {
             await api(`music-heard/${player.isPlayingData.id}`, 'post', {}, sessionClient?.user.jwt)
         }

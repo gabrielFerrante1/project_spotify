@@ -46,10 +46,11 @@ export const Layout = ({ children }: Props) => {
         const data: MyPlaylists = await api('playlist', 'get', {}, sessionClient?.user.jwt);
         dispatch(setInfosPlaylists(data.playlist))
 
-        if (player.isPlayingData.tipo == 'Playlist' && player.playlist.length >= 1) {
+        if (player.isPlayingData.tipo == 'Playlist' && player.playlist.length >= 1) { 
             const musics = data.playlist.find(playlist => playlist.id == player.isPlayingData.id)
 
-            if (musics != undefined) dispatch(setPlayList(musics.musics))
+           
+            if (musics != undefined) dispatch(setPlayList(musics.musics)) 
         }
  
     }

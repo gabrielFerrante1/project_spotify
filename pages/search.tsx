@@ -81,7 +81,7 @@ const Search = () => {
                 </div>
             </Row>
 
-            <Row className={styles.rowGenre} hidden={list.length > 1}>
+            <Row className={styles.rowGenre} hidden={list.length >= 1}>
                 <div className={styles.gridGenres}>
                     <div
                         onClick={() => serachGenre('Internacional')}
